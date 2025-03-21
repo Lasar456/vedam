@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Header with Left Hamburger</title>
+
+    <!-- ✅ Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <style>
+      /* Base Styling */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background-color: #fdf9f9;
+        line-height: 1.6;
+      }
+
+      /* ✅ Header Styling */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 60px;
+        background: #fdf9f9;
+        border-bottom: 1px solid #ddd;
+        position: relative;
+        z-index: 999;
+      }
+
+      /* ✅ Left Section: Logo + Contact Info */
+      .left-section {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .logo img {
+        height: 65px;
+        width: auto;
+      }
+
+      /* ✅ Contact Info */
+      .contact-info {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .contact-info a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #333;
+        font-size: 16px;
+        transition: 0.3s;
+      }
+
+      .contact-info a:hover {
+        color: #e05d4e;
+      }
+
+      .contact-info .icon {
+        width: 30px;
+        height: 30px;
+        background-color: #e05d4e;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        font-size: 15px;
+        transition: 0.3s;
+        margin-right: 10px;
+      }
+
+      .contact-info .icon:hover {
+        background-color: #c44d3a;
+      }
+
+      /* ✅ Middle Section: Navigation Menu (for desktop) */
+      .nav-menu {
+        display: flex;
+        gap: 35px;
+      }
+
+      .nav-menu a {
+        text-decoration: none;
+        text-transform: uppercase;
+
+        color: #333;
+        font-size: 18px;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+
+      .nav-menu a:hover {
+        color: #e05d4e;
+      }
+
+      /* ✅ Right Section: Social Icons + "BOOK NOW" Button */
+      .right-section {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-icons a {
+        color: #333;
+        font-size: 22px;
+        transition: 0.3s;
+        text-decoration: none;
+      }
+
+      .social-icons a:hover {
+        color: #e05d4e;
+      }
+
+      .book-btn {
+        background-color: #e29085;
+        color: #fff;
+        padding: 12px 25px;
+        text-decoration: none;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .book-btn:hover {
+        background-color: #c87467;
+      }
+
+      /* ✅ Hamburger Menu Styling */
+      .hamburger {
+        display: none;
+        font-size: 30px;
+        cursor: pointer;
+        color: #333;
+        transition: 0.3s;
+      }
+
+      .hamburger:hover {
+        color: #555;
+      }
+
+      /* ✅ Drawer-style Mobile Menu (slides from left) */
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 300px;
+        height: 100%;
+        background: #fff;
+        box-shadow: 10px 0 20px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+        overflow-y: auto;
+        transition: all 0.5s ease;
+        padding: 20px;
+      }
+
+      .mobile-menu.active {
+        left: 0; /* Slide in from left */
+      }
+
+      .mobile-menu a {
+        display: block;
+        text-decoration: none;
+        color: #333;
+        font-size: 18px;
+        padding: 15px 0;
+        transition: 0.3s;
+        text-transform: uppercase;
+      }
+
+      .mobile-menu a:hover {
+        color: #e05d4e;
+      }
+
+      .mobile-contact,
+      .mobile-social {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .mobile-menu .book-btn {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+        margin-top: 20px;
+      }
+
+      /* ✅ Mobile Responsive */
+      @media (max-width: 1100px) {
+        .header {
+          padding: 20px 30px;
+        }
+
+        .nav-menu {
+          display: none; /* Hide desktop menu on mobile */
+        }
+
+        .hamburger {
+          display: block; /* ✅ Show hamburger on mobile */
+          position: absolute;
+          right: 30px; /* ✅ Keep hamburger on the right */
+          top: 25px;
+        }
+
+        .right-section,
+        .contact-info {
+          display: none; /* Hide desktop icons on mobile */
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header {
+          flex-direction: column;
+          align-items: center;
+          padding: 20px;
+        }
+
+        .left-section {
+          justify-content: space-between;
+          width: 100%;
+        }
+
+        .logo img {
+          height: 50px;
+        }
+
+        .book-btn {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <!-- ✅ Left Section: Logo + Contact Info -->
+      <div class="left-section">
+        <div class="logo">
+          <img src="./vedam.png" alt="Logo" />
+        </div>
+
+        <div class="contact-info">
+          <a href="mailto:info@coastalvedam.com">
+            <div class="icon"><i class="fas fa-envelope"></i></div>
+            info@coastalvedam.com
+          </a>
+          <a href="tel:9589044093">
+            <div class="icon"><i class="fas fa-phone"></i></div>
+            9589044093
+          </a>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Our Services</a>
+        <a href="#">Pricing Plans</a>
+        <a href="#">Blogs</a>
+        <a href="#">Gallery</a>
+        <a href="#">Contact</a>
+      </nav>
+
+      <div class="right-section">
+        <div class="social-icons">
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <a href="#" class="book-btn">BOOK NOW</a>
+      </div>
+
+      <div class="hamburger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Our Services</a>
+      <a href="#">Pricing Plans</a>
+      <a href="#">Blogs</a>
+      <a href="#">Gallery</a>
+      <a href="#">Contact</a>
+
+      <div class="mobile-contact">
+        <a href="#"><i class="fas fa-envelope"></i> info@coastalvedam.com</a>
+        <a href="#"><i class="fas fa-phone"></i> 9589044093</a>
+      </div>
+
+      <div class="mobile-social">
+        <a href="#"><i class="fa-brands fa-facebook"></i> Facebook</a>
+        <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+      </div>
+
+      <a href="#" class="book-btn">BOOK NOW</a>
+    </div>
+
+    <script>
+      function toggleMenu() {
+        document.getElementById("mobileMenu").classList.toggle("active");
+      }
+    </script>
+  </body>
+</html>
